@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coven of Intuition — A Sacred Gathering for Modern Witches</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --parchment: #f4edd3;
+  --parchment-dark: #e8dfc4;
+  --ink: #2a1f14;
+  --ink-light: #4a3c2e;
+  --forest: #2d4a3e;
+  --forest-deep: #1a3028;
+  --forest-light: #3d6b58;
+  --gold: #b8943e;
+  --gold-light: #d4b45c;
+  --gold-dim: #8a6e2f;
+  --rust: #8b5e3c;
+  --cream: #faf6e9;
+  --shadow: rgba(42, 31, 20, 0.15);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+/* Offset for fixed nav */
+[id] { scroll-margin-top: 56px; }
+
+body {
+  font-family: 'Crimson Text', Georgia, serif;
+  color: var(--ink);
+  background: var(--parchment);
+  line-height: 1.6;
+  font-size: 17px;
+  overflow-x: hidden;
+}
+
+/* === PARCHMENT TEXTURE OVERLAY === */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.5;
+}
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--parchment-dark); }
+::-webkit-scrollbar-thumb {
+  background: var(--forest);
+  border-radius: 5px;
+  border: 2px solid var(--parchment-dark);
+}
+
+/* === ORNAMENTAL DIVIDERS === */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 28px auto;
+  max-width: 400px;
+  opacity: 0.6;
+}
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+}
+.divider-symbol {
+  font-size: 22px;
+  color: var(--gold-dim);
+  line-height: 1;
+}
+
+/* === NAVIGATION === */
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  height: 52px;
+  background: rgba(26, 48, 40, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(184, 148, 62, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.nav-home {
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+
+.nav-home:hover {
+  color: var(--gold-light);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(244, 237, 211, 0.75);
+  text-decoration: none;
+  padding: 6px 12px;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+
+.nav-links a:hover {
+  color: var(--gold-light);
+}
+
+.nav-login {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.nav-login a {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cream);
+  text-decoration: none;
+  padding: 6px 16px;
+  border: 1px solid var(--gold-dim);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.nav-login a:hover {
+  background: rgba(184, 148, 62, 0.15);
+  border-color: var(--gold-light);
+  color: var(--gold-light);
+}
+
+/* === Mobile nav === */
+@media (max-width: 640px) {
+  .nav-home { font-size: 10px; left: 12px; }
+  .nav-links { gap: 2px; }
+  .nav-links a { font-size: 9px; padding: 6px 6px; letter-spacing: 0.05em; }
+  .nav-login a { font-size: 9px; padding: 5px 10px; }
+  .nav-bar { padding: 0 12px; }
+  .nav-login { right: 12px; }
+}
+
+/* === HEADER / HERO === */
+.hero {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 24px;
+  padding-top: 80px;
+  position: relative;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(45, 74, 62, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 100%, rgba(184, 148, 62, 0.06) 0%, transparent 50%),
+    var(--parchment);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(to right, transparent 5%, var(--forest) 20%, var(--gold) 50%, var(--forest) 80%, transparent 95%);
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--parchment));
+  pointer-events: none;
+}
+
+.logo-container {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 24px;
+  box-shadow:
+    0 0 0 3px var(--gold-dim),
+    0 0 0 6px var(--forest),
+    0 0 40px rgba(184, 148, 62, 0.2);
+  animation: fadeInDown 1.2s ease-out;
+  position: relative;
+}
+
+.logo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.logo-placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--forest-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--parchment);
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  text-align: center;
+  padding: 20px;
+}
+
+.hero-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 700;
+  color: var(--forest-deep);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  animation: fadeInUp 1s ease-out 0.3s both;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.hero-subtitle {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: clamp(18px, 2.5vw, 24px);
+  color: var(--gold-dim);
+  margin-bottom: 20px;
+  animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+.hero-tagline {
+  max-width: 600px;
+  font-size: 17px;
+  color: var(--ink-light);
+  margin-bottom: 28px;
+  animation: fadeInUp 1s ease-out 0.9s both;
+}
+
+.cta-button {
+  display: inline-block;
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: var(--forest-deep);
+  border: 2px solid var(--gold-dim);
+  padding: 14px 40px;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  animation: fadeInUp 1s ease-out 1.2s both;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; right: 0; bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(184, 148, 62, 0.15), transparent);
+  transition: left 0.6s ease;
+}
+
+.cta-button:hover {
+  background: var(--forest);
+  border-color: var(--gold-light);
+  box-shadow: 0 0 30px rgba(184, 148, 62, 0.2);
+  transform: translateY(-2px);
+}
+
+.cta-button:hover::before { left: 100%; }
+
+/* === SECTIONS === */
+section {
+  padding: 48px 24px;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(22px, 3.5vw, 32px);
+  font-weight: 600;
+  color: var(--forest-deep);
+  text-align: center;
+  margin-bottom: 8px;
+  letter-spacing: 0.06em;
+}
+
+.section-subtitle {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  color: var(--gold-dim);
+  text-align: center;
+  font-size: 17px;
+  margin-bottom: 24px;
+}
+
+/* === THE STORY === */
+.story-section {
+  position: relative;
+}
+
+.story-section p {
+  margin-bottom: 16px;
+  text-indent: 2em;
+  font-size: 17px;
+}
+
+/* drop cap removed */
+
+/* === WHAT MEMBERS RECEIVE === */
+.offerings-section {
+  background:
+    linear-gradient(135deg, rgba(45, 74, 62, 0.04) 0%, transparent 50%),
+    linear-gradient(225deg, rgba(184, 148, 62, 0.04) 0%, transparent 50%);
+  border-top: 1px solid rgba(184, 148, 62, 0.2);
+  border-bottom: 1px solid rgba(184, 148, 62, 0.2);
+  max-width: 100%;
+  padding: 48px 24px;
+}
+
+.offerings-inner {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.offering-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.offering-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 14px 20px;
+  background: rgba(244, 237, 211, 0.6);
+  border-left: 3px solid var(--gold-dim);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.offering-item:hover {
+  transform: translateX(6px);
+  box-shadow: -3px 3px 15px var(--shadow);
+}
+
+.offering-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+  width: 36px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.offering-text h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--forest-deep);
+  margin-bottom: 4px;
+  letter-spacing: 0.04em;
+}
+
+.offering-text p {
+  font-size: 16px;
+  color: var(--ink-light);
+  line-height: 1.6;
+}
+
+/* === PRICING / JOIN === */
+.join-section {
+  text-align: center;
+}
+
+.price-card {
+  max-width: 480px;
+  margin: 0 auto 28px;
+  padding: 36px 32px;
+  background:
+    linear-gradient(to bottom, var(--cream), var(--parchment));
+  border: 2px solid var(--gold-dim);
+  position: relative;
+}
+
+.price-card::before {
+  content: '✦';
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--parchment);
+  padding: 0 16px;
+  color: var(--gold);
+  font-size: 20px;
+}
+
+.price-name {
+  font-family: 'Cinzel', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--forest-deep);
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+
+.price-amount {
+  font-family: 'Cinzel', serif;
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--gold-dim);
+  margin-bottom: 4px;
+}
+
+.price-period {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  color: var(--ink-light);
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+.perks-list {
+  list-style: none;
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.perks-list li {
+  padding: 8px 0;
+  border-bottom: 1px dotted rgba(184, 148, 62, 0.3);
+  font-size: 16px;
+  color: var(--ink-light);
+  padding-left: 28px;
+  position: relative;
+}
+
+.perks-list li::before {
+  content: '✧';
+  position: absolute;
+  left: 4px;
+  color: var(--gold);
+}
+
+/* === ABOUT === */
+.about-section blockquote {
+  border-left: 3px solid var(--gold-dim);
+  padding: 16px 24px;
+  margin: 20px 0;
+  background: rgba(184, 148, 62, 0.04);
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--ink-light);
+  line-height: 1.7;
+}
+
+.about-section p {
+  margin-bottom: 14px;
+  font-size: 17px;
+}
+
+/* === FAQ === */
+.faq-section {
+  max-width: 100%;
+  background: var(--forest-deep);
+  color: var(--parchment);
+  padding: 48px 24px;
+}
+
+.faq-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.faq-section .section-title { color: var(--parchment); }
+.faq-section .section-subtitle { color: var(--gold-light); }
+
+.faq-item {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(184, 148, 62, 0.2);
+}
+
+.faq-item:last-child { border-bottom: none; }
+
+.faq-question {
+  font-family: 'Cinzel', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--gold-light);
+  margin-bottom: 8px;
+  letter-spacing: 0.03em;
+}
+
+.faq-answer {
+  font-size: 16px;
+  color: rgba(244, 237, 211, 0.85);
+  line-height: 1.7;
+}
+
+/* === COUNTDOWN TIMER === */
+.countdown-wrapper {
+  margin-top: 28px;
+  text-align: center;
+}
+
+.countdown-label {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--gold-dim);
+  margin-bottom: 12px;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.countdown-number {
+  font-family: 'Cinzel', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--forest-deep);
+  background: rgba(244, 237, 211, 0.5);
+  border: 1px solid rgba(184, 148, 62, 0.3);
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.countdown-text {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-top: 6px;
+}
+
+/* === SOCIAL ICONS === */
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.footer-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(184, 148, 62, 0.4);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.footer-social a:hover {
+  border-color: var(--gold-light);
+  background: rgba(184, 148, 62, 0.15);
+}
+
+.footer-social a svg {
+  width: 18px;
+  height: 18px;
+  fill: rgba(244, 237, 211, 0.7);
+  transition: fill 0.3s ease;
+}
+
+.footer-social a:hover svg {
+  fill: var(--gold-light);
+}
+
+/* === FOOTER === */
+footer {
+  text-align: center;
+  padding: 32px 24px;
+  background: var(--forest-deep);
+  border-top: 1px solid rgba(184, 148, 62, 0.3);
+}
+
+.footer-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+
+.footer-email {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  color: rgba(244, 237, 211, 0.6);
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.footer-email a {
+  color: rgba(244, 237, 211, 0.6);
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(244, 237, 211, 0.3);
+}
+
+.footer-copy {
+  font-size: 13px;
+  color: rgba(244, 237, 211, 0.35);
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+
+  .logo-container { width: 160px; height: 160px; }
+
+  section { padding: 60px 20px; }
+
+  .offering-item { flex-direction: column; gap: 8px; }
+
+  .price-card { padding: 36px 24px; }
+
+  .price-amount { font-size: 40px; }
+
+  .story-section p:first-of-type::first-letter { font-size: 48px; }
+}
+</style>
+</head>
+<body>
+
+
+<!-- ====== NAVIGATION ====== -->
+<nav class="nav-bar">
+  <a href="#home" class="nav-home">Coven of Intuition</a>
+  <ul class="nav-links">
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#offerings">Monthly Mail</a></li>
+    <li><a href="#join">Join</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <div class="nav-login">
+    <a href="#">Member Login</a>
+  </div>
+</nav>
+
+<!-- ====== HERO ====== -->
+<section class="hero" id="home">
+  <div class="logo-container">
+    <div class="logo-placeholder">
+      <!-- Replace this div with: <img src="your-logo.png" alt="Coven of Intuition"> -->
+      Coven of<br>Intuition<br>🌙
+    </div>
+  </div>
+  <h1 class="hero-title">Coven of Intuition</h1>
+  <p class="hero-subtitle">A Sacred Gathering for Modern Witches</p>
+  <p class="hero-tagline">
+    A coven reborn through handwritten letters, where witches exchange wisdom
+    and keep a living grimoire with kindred spirits around the world.
+  </p>
+  <a href="#join" class="cta-button">Join the Coven</a>
+</section>
+
+<!-- ====== THE STORY ====== -->
+<section class="story-section reveal" id="story">
+  <h2 class="section-title">Our Story</h2>
+  <p class="section-subtitle">How the Coven was born</p>
+
+  <div class="divider"><span class="divider-symbol">☽</span></div>
+
+  <p>Most of us witches practice alone. We stir our cauldrons in quiet kitchens, draw our tarot cards by candlelight, and whisper our intentions to the moon with no one to hear us. But it wasn't always this way.</p>
+
+  <p>Witches once learned side by side — each one both student and teacher. Our craft was passed through stories, through hands, through time. Now the world is louder and covens are harder to find… but magick still hums in the air, in connection, in the art of sharing.</p>
+
+  <p>That's why the Coven of Intuition was born. We are a circle of modern witches, connected through the oldest and most intimate form of communication — the handwritten letter. No longer practicing alone, but tied together as one through shared knowledge, ancestral wisdom, the earth's elements, and our own power.</p>
+</section>
+
+<!-- ====== WHAT MEMBERS RECEIVE ====== -->
+<section class="offerings-section" id="offerings">
+  <div class="offerings-inner reveal">
+    <h2 class="section-title">Each Month, You'll Receive</h2>
+    <p class="section-subtitle">Delivered to your door by owl… or postal carrier</p>
+
+    <div class="divider"><span class="divider-symbol">✦</span></div>
+
+    <ul class="offering-list">
+      <li class="offering-item">
+        <span class="offering-icon">💌</span>
+        <div class="offering-text">
+          <h3>A Handwritten Magickal Letter</h3>
+          <p>A personal letter filled with seasonal wisdom, reflections, and intentions to guide your monthly practice.</p>
+        </div>
+      </li>
+      <li class="offering-item">
+        <span class="offering-icon">✨</span>
+        <div class="offering-text">
+          <h3>Trinkets & Magickal Goodies</h3>
+          <p>Small enchanted surprises — crystals, herbs, charms, spell cards, and other tokens chosen with intention.</p>
+        </div>
+      </li>
+      <li class="offering-item">
+        <span class="offering-icon">🔮</span>
+        <div class="offering-text">
+          <h3>Exclusive Coven Community Access</h3>
+          <p>Join The Coven — our private members-only group where witches connect, share spells, and grow together.</p>
+        </div>
+      </li>
+      <li class="offering-item">
+        <span class="offering-icon">📖</span>
+        <div class="offering-text">
+          <h3>Members-Only Blog Posts</h3>
+          <p>Unlock hidden teachings, deeper rituals, and secret lore reserved only for Coven members.</p>
+        </div>
+      </li>
+      <li class="offering-item">
+        <span class="offering-icon">🌿</span>
+        <div class="offering-text">
+          <h3>Seasonal Spells & Rituals</h3>
+          <p>Guided workings aligned with the moon phases and the turning of the Wheel of the Year.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ====== JOIN / PRICING ====== -->
+<section class="join-section reveal" id="join">
+  <h2 class="section-title">Join the Coven</h2>
+  <p class="section-subtitle">Your place in the circle awaits</p>
+
+  <div class="divider"><span class="divider-symbol">⊹</span></div>
+
+  <div class="price-card">
+    <h3 class="price-name">Monthly Magickal Mail</h3>
+    <div class="price-amount">$14.14</div>
+    <div class="price-period">per moon cycle</div>
+    <ul class="perks-list">
+      <li>Monthly witchy letter with trinkets & goodies</li>
+      <li>Exclusive access to The Coven of Intuition private group</li>
+      <li>Members-only blog posts & hidden teachings</li>
+      <li>Seasonal spells aligned with the moon</li>
+      <li>Cancel anytime — but your sisters will miss you</li>
+    </ul>
+    <a href="#" class="cta-button" style="animation: none;">Subscribe Now</a>
+  </div>
+
+  <p style="font-family: 'IM Fell English', serif; font-style: italic; color: var(--ink-light); font-size: 15px;">
+    Subscribe by the 15th to receive that month's correspondence.<br>
+    Sign-ups after the 15th will receive the following month's mail.
+  </p>
+
+  <div class="countdown-wrapper">
+    <p class="countdown-label">Time remaining to join this month's mailing ✦</p>
+    <div class="countdown">
+      <div class="countdown-unit">
+        <div class="countdown-number" id="cd-days">--</div>
+        <span class="countdown-text">Days</span>
+      </div>
+      <div class="countdown-unit">
+        <div class="countdown-number" id="cd-hours">--</div>
+        <span class="countdown-text">Hours</span>
+      </div>
+      <div class="countdown-unit">
+        <div class="countdown-number" id="cd-mins">--</div>
+        <span class="countdown-text">Mins</span>
+      </div>
+      <div class="countdown-unit">
+        <div class="countdown-number" id="cd-secs">--</div>
+        <span class="countdown-text">Secs</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== ABOUT ====== -->
+<section class="about-section reveal" id="about">
+  <h2 class="section-title">About the Coven</h2>
+  <p class="section-subtitle">The keeper of our circle's wisdom</p>
+
+  <div class="divider"><span class="divider-symbol">☾</span></div>
+
+  <p>The Coven of Intuition was created for witches of all levels and backgrounds — a place where solitary practitioners can finally find their circle. We believe that magick grows stronger when shared, and that the oldest traditions deserve to live on in new ways.</p>
+
+  <p>Through handwritten letters, we revive the ancient art of passing wisdom from witch to witch. Each month, our intentions rest together beneath the same moon — becoming part of our shared living grimoire.</p>
+
+  <blockquote>
+    "Though we may be scattered across oceans and cities,
+    our intentions rise together beneath the same moon.
+    Through ink, herb, and card, we remember:
+    magick is meant to be shared."
+  </blockquote>
+</section>
+
+<!-- ====== BLOG ====== -->
+<section class="story-section reveal" id="blog">
+  <h2 class="section-title">From the Grimoire</h2>
+  <p class="section-subtitle">Explore our blog</p>
+
+  <div class="divider"><span class="divider-symbol">✧</span></div>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 20px;">
+    <a href="#" style="text-decoration: none; padding: 20px 16px; background: rgba(45, 74, 62, 0.06); border: 1px solid rgba(45, 74, 62, 0.15); text-align: center; transition: all 0.3s ease; display: block;" onmouseover="this.style.background='rgba(45,74,62,0.12)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.background='rgba(45,74,62,0.06)'; this.style.transform='translateY(0)'">
+      <div style="font-size: 28px; margin-bottom: 12px;">🕯️</div>
+      <div style="font-family: 'Cinzel', serif; font-size: 14px; color: var(--forest-deep); letter-spacing: 0.06em; font-weight: 600;">Spells & Rituals</div>
+    </a>
+    <a href="#" style="text-decoration: none; padding: 20px 16px; background: rgba(45, 74, 62, 0.06); border: 1px solid rgba(45, 74, 62, 0.15); text-align: center; transition: all 0.3s ease; display: block;" onmouseover="this.style.background='rgba(45,74,62,0.12)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.background='rgba(45,74,62,0.06)'; this.style.transform='translateY(0)'">
+      <div style="font-size: 28px; margin-bottom: 12px;">📜</div>
+      <div style="font-family: 'Cinzel', serif; font-size: 14px; color: var(--forest-deep); letter-spacing: 0.06em; font-weight: 600;">Stories & Lore</div>
+    </a>
+    <a href="#" style="text-decoration: none; padding: 20px 16px; background: rgba(45, 74, 62, 0.06); border: 1px solid rgba(45, 74, 62, 0.15); text-align: center; transition: all 0.3s ease; display: block;" onmouseover="this.style.background='rgba(45,74,62,0.12)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.background='rgba(45,74,62,0.06)'; this.style.transform='translateY(0)'">
+      <div style="font-size: 28px; margin-bottom: 12px;">🌙</div>
+      <div style="font-family: 'Cinzel', serif; font-size: 14px; color: var(--forest-deep); letter-spacing: 0.06em; font-weight: 600;">Moon Phases & Astrology</div>
+    </a>
+    <a href="#" style="text-decoration: none; padding: 20px 16px; background: rgba(45, 74, 62, 0.06); border: 1px solid rgba(45, 74, 62, 0.15); text-align: center; transition: all 0.3s ease; display: block;" onmouseover="this.style.background='rgba(45,74,62,0.12)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.background='rgba(45,74,62,0.06)'; this.style.transform='translateY(0)'">
+      <div style="font-size: 28px; margin-bottom: 12px;">📣</div>
+      <div style="font-family: 'Cinzel', serif; font-size: 14px; color: var(--forest-deep); letter-spacing: 0.06em; font-weight: 600;">Community News</div>
+    </a>
+  </div>
+</section>
+
+<!-- ====== FAQ ====== -->
+<section class="faq-section" id="faq">
+  <div class="faq-inner reveal">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <p class="section-subtitle">Everything you need to know</p>
+
+    <div class="divider" style="opacity: 0.4;"><span class="divider-symbol" style="color: var(--gold-light);">✦</span></div>
+
+    <div class="faq-item">
+      <h3 class="faq-question">How does the Monthly Magickal Mail work?</h3>
+      <p class="faq-answer">Each month you'll receive a physical letter in the mail containing a handwritten note, small trinkets, magickal goodies, and seasonal guidance. Mailings are sent on the 16th of each month.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3 class="faq-question">When do I need to subscribe by?</h3>
+      <p class="faq-answer">Subscribe by the 15th of the month to receive that month's correspondence. Sign-ups after the 15th will receive the following month's Magickal Mail. Please allow 7–14 business days for delivery.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3 class="faq-question">Can I cancel my subscription?</h3>
+      <p class="faq-answer">You can end your membership at any time — though your sisters in the Coven will miss you. Simply email us and we'll take care of it.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3 class="faq-question">What about the private community?</h3>
+      <p class="faq-answer">As an active subscriber, you'll have exclusive access to The Coven — our private members-only group where you can discuss spells, share stories, and connect with fellow witches.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3 class="faq-question">Do I need to be an experienced witch?</h3>
+      <p class="faq-answer">Not at all. The Coven of Intuition welcomes witches of all levels and backgrounds. Whether you're just beginning your journey or have practiced for decades, there's a place for you here.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+  <div class="footer-logo">COVEN OF INTUITION</div>
+  <div class="footer-social">
+    <a href="https://www.tiktok.com/@covenofintuition" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V9.37a8.16 8.16 0 004.76 1.52v-3.4a4.85 4.85 0 01-1-.8z"/></svg>
+    </a>
+  </div>
+  <div class="footer-email"><a href="mailto:blessedbe@covenofintuition.com">blessedbe@covenofintuition.com</a></div>
+  <div class="footer-copy">© 2026 Coven of Intuition — All rights reserved.</div>
+</footer>
+
+<!-- ====== SCROLL REVEAL ====== -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Countdown timer — targets the 15th of each month
+  function getNext15th() {
+    const now = new Date();
+    let target = new Date(now.getFullYear(), now.getMonth(), 15, 23, 59, 59);
+    if (now > target) {
+      // Already past this month's 15th, target next month
+      target = new Date(now.getFullYear(), now.getMonth() + 1, 15, 23, 59, 59);
+    }
+    return target;
+  }
+
+  function updateCountdown() {
+    const now = new Date();
+    const target = getNext15th();
+    const diff = target - now;
+
+    if (diff <= 0) {
+      document.getElementById('cd-days').textContent = '0';
+      document.getElementById('cd-hours').textContent = '0';
+      document.getElementById('cd-mins').textContent = '0';
+      document.getElementById('cd-secs').textContent = '0';
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById('cd-days').textContent = days;
+    document.getElementById('cd-hours').textContent = hours;
+    document.getElementById('cd-mins').textContent = mins;
+    document.getElementById('cd-secs').textContent = secs;
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+});
+</script>
+
+</body>
+</html>
