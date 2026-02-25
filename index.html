@@ -144,6 +144,9 @@ body::before {
   color: var(--gold-light);
 }
 
+/* Hide mobile-only login link on desktop */
+.mobile-login { display: none; }
+
 .nav-login {
   position: absolute;
   right: 24px;
@@ -171,14 +174,88 @@ body::before {
   color: var(--gold-light);
 }
 
+/* === Hamburger button (hidden on desktop) === */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  z-index: 910;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--gold);
+  margin: 5px 0;
+  transition: all 0.3s ease;
+  border-radius: 1px;
+}
+
+.nav-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
 /* === Mobile nav === */
 @media (max-width: 640px) {
-  .nav-home { font-size: 10px; left: 12px; }
-  .nav-links { gap: 2px; }
-  .nav-links a { font-size: 9px; padding: 6px 6px; letter-spacing: 0.05em; }
-  .nav-login a { font-size: 9px; padding: 5px 10px; }
+  .nav-home { font-size: 11px; left: 12px; }
   .nav-bar { padding: 0 12px; }
-  .nav-login { right: 12px; }
+  .nav-login { display: none; }
+
+  .nav-toggle { display: block; position: absolute; right: 12px; top: 50%; transform: translateY(-50%); }
+
+  .nav-links {
+    position: fixed;
+    top: 52px;
+    left: 0;
+    right: 0;
+    background: rgba(26, 48, 40, 0.97);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(184, 148, 62, 0.3);
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .nav-links.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    padding: 12px 24px;
+    letter-spacing: 0.1em;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-links a:hover {
+    background: rgba(184, 148, 62, 0.1);
+  }
+
+  /* Mobile login link inside dropdown */
+  .nav-links .mobile-login {
+    display: list-item;
+    margin-top: 8px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(184, 148, 62, 0.2);
+  }
 }
 
 /* === HEADER / HERO === */
@@ -711,17 +788,23 @@ footer {
 <!-- ====== NAVIGATION ====== -->
 <nav class="nav-bar">
   <a href="#home" class="nav-home">Coven of Intuition</a>
-  <ul class="nav-links">
+  <ul class="nav-links" id="navLinks">
     <li><a href="#story">Our Story</a></li>
     <li><a href="#offerings">Monthly Mail</a></li>
     <li><a href="#join">Join</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#blog">Blog</a></li>
     <li><a href="#faq">FAQ</a></li>
+    <li class="mobile-login"><a href="#">Member Login</a></li>
   </ul>
   <div class="nav-login">
     <a href="#">Member Login</a>
   </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
 
 <!-- ====== HERO ====== -->
@@ -948,6 +1031,23 @@ footer {
 <!-- ====== SCROLL REVEAL ====== -->
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+  // Hamburger menu toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  
+  navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('active');
+    navLinks.classList.toggle('open');
+  });
+
+  // Close menu when a link is clicked
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navToggle.classList.remove('active');
+      navLinks.classList.remove('open');
+    });
+  });
+
   // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
