@@ -963,19 +963,19 @@ footer {
   <div class="divider"><span class="divider-symbol">✧</span></div>
 
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 20px;">
-    <a href="#" style="text-decoration: none; padding: 20px 16px; background: rgba(45, 74, 62, 0.06); border: 1px solid rgba(45, 74, 62, 0.15); text-align: center; transition: all 0.3s ease; display: block;" onmouseover="this.style.background='rgba(45,74,62,0.12)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.background='rgba(45,74,62,0.06)'; this.style.transform='translateY(0)'">
+    <a href="#subscribe" style="text-decoration: none; padding: 20px 16px; background: rgba(45, 74, 62, 0.06); border: 1px solid rgba(45, 74, 62, 0.15); text-align: center; transition: all 0.3s ease; display: block;" onmouseover="this.style.background='rgba(45,74,62,0.12)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.background='rgba(45,74,62,0.06)'; this.style.transform='translateY(0)'">
       <div style="font-size: 28px; margin-bottom: 12px;">🕯️</div>
       <div style="font-family: 'Cinzel', serif; font-size: 14px; color: var(--forest-deep); letter-spacing: 0.06em; font-weight: 600;">Spells & Rituals</div>
     </a>
-    <a href="#" style="text-decoration: none; padding: 20px 16px; background: rgba(45, 74, 62, 0.06); border: 1px solid rgba(45, 74, 62, 0.15); text-align: center; transition: all 0.3s ease; display: block;" onmouseover="this.style.background='rgba(45,74,62,0.12)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.background='rgba(45,74,62,0.06)'; this.style.transform='translateY(0)'">
+    <a href="#subscribe" style="text-decoration: none; padding: 20px 16px; background: rgba(45, 74, 62, 0.06); border: 1px solid rgba(45, 74, 62, 0.15); text-align: center; transition: all 0.3s ease; display: block;" onmouseover="this.style.background='rgba(45,74,62,0.12)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.background='rgba(45,74,62,0.06)'; this.style.transform='translateY(0)'">
       <div style="font-size: 28px; margin-bottom: 12px;">📜</div>
       <div style="font-family: 'Cinzel', serif; font-size: 14px; color: var(--forest-deep); letter-spacing: 0.06em; font-weight: 600;">Stories & Lore</div>
     </a>
-    <a href="#" style="text-decoration: none; padding: 20px 16px; background: rgba(45, 74, 62, 0.06); border: 1px solid rgba(45, 74, 62, 0.15); text-align: center; transition: all 0.3s ease; display: block;" onmouseover="this.style.background='rgba(45,74,62,0.12)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.background='rgba(45,74,62,0.06)'; this.style.transform='translateY(0)'">
+    <a href="#subscribe" style="text-decoration: none; padding: 20px 16px; background: rgba(45, 74, 62, 0.06); border: 1px solid rgba(45, 74, 62, 0.15); text-align: center; transition: all 0.3s ease; display: block;" onmouseover="this.style.background='rgba(45,74,62,0.12)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.background='rgba(45,74,62,0.06)'; this.style.transform='translateY(0)'">
       <div style="font-size: 28px; margin-bottom: 12px;">🌙</div>
       <div style="font-family: 'Cinzel', serif; font-size: 14px; color: var(--forest-deep); letter-spacing: 0.06em; font-weight: 600;">Moon Phases & Astrology</div>
     </a>
-    <a href="#" style="text-decoration: none; padding: 20px 16px; background: rgba(45, 74, 62, 0.06); border: 1px solid rgba(45, 74, 62, 0.15); text-align: center; transition: all 0.3s ease; display: block;" onmouseover="this.style.background='rgba(45,74,62,0.12)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.background='rgba(45,74,62,0.06)'; this.style.transform='translateY(0)'">
+    <a href="#subscribe" style="text-decoration: none; padding: 20px 16px; background: rgba(45, 74, 62, 0.06); border: 1px solid rgba(45, 74, 62, 0.15); text-align: center; transition: all 0.3s ease; display: block;" onmouseover="this.style.background='rgba(45,74,62,0.12)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.background='rgba(45,74,62,0.06)'; this.style.transform='translateY(0)'">
       <div style="font-size: 28px; margin-bottom: 12px;">📣</div>
       <div style="font-family: 'Cinzel', serif; font-size: 14px; color: var(--forest-deep); letter-spacing: 0.06em; font-weight: 600;">Community News</div>
     </a>
@@ -1049,14 +1049,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // On mobile, scroll so Subscribe button is visible in frame
+  // On mobile, scroll so price card is nicely framed
   document.querySelectorAll('a[href="#subscribe"]').forEach(link => {
     link.addEventListener('click', (e) => {
       if (window.innerWidth <= 640) {
         e.preventDefault();
-        const subscribeBtn = document.querySelector('#subscribe .cta-button');
-        if (subscribeBtn) {
-          subscribeBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const priceCard = document.getElementById('subscribe');
+        if (priceCard) {
+          priceCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       }
     });
