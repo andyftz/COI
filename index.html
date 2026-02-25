@@ -795,7 +795,7 @@ footer {
   <ul class="nav-links" id="navLinks">
     <li><a href="#story">Our Story</a></li>
     <li><a href="#offerings">Monthly Mail</a></li>
-    <li><a href="#join">Join</a></li>
+    <li><a href="#subscribe">Join</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#blog">Blog</a></li>
     <li><a href="#faq">FAQ</a></li>
@@ -822,7 +822,7 @@ footer {
     A coven reborn through handwritten letters, where witches exchange wisdom
     and keep a living grimoire with kindred spirits around the world.
   </p>
-  <a href="#join" class="cta-button">Join the Coven</a>
+  <a href="#subscribe" class="cta-button">Join the Coven</a>
 </section>
 
 <!-- ====== THE STORY ====== -->
@@ -894,7 +894,7 @@ footer {
 
   <div class="divider"><span class="divider-symbol">⊹</span></div>
 
-  <div class="price-card">
+  <div class="price-card" id="subscribe">
     <h3 class="price-name">Monthly Magickal Mail</h3>
     <div class="price-amount">$14.14</div>
     <div class="price-period">per moon cycle</div>
@@ -1046,6 +1046,19 @@ document.addEventListener('DOMContentLoaded', () => {
     link.addEventListener('click', () => {
       navToggle.classList.remove('active');
       navLinks.classList.remove('open');
+    });
+  });
+
+  // On mobile, scroll so Subscribe button is visible in frame
+  document.querySelectorAll('a[href="#subscribe"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      if (window.innerWidth <= 640) {
+        e.preventDefault();
+        const subscribeBtn = document.querySelector('#subscribe .cta-button');
+        if (subscribeBtn) {
+          subscribeBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
     });
   });
 
